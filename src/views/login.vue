@@ -3,7 +3,7 @@
 
     <v-layout row wrap align-center justify-center>
 
-        <img src="@/assets/logo.png" width="300" class="ma-5">
+        <img src="@/assets/logo.png" width="375" class="ma-5">
 
         <v-card width="400">
 
@@ -66,7 +66,7 @@ export default {
                     this.$refs.recaptcha.reset();
 
                     this.errors.email = "Only admin users can access the administration panel";
-                    
+
                 }
 
                 this.$store.commit("login", data);
