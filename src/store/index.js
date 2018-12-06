@@ -8,8 +8,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: null,
-    loading: false
+    loading: false,
+    drawer: false
   },
   mutations: mutations,
-  actions: actions
+  actions: actions,
+  getters: {
+    loggedIn: (state) => state.user && state.user.auth_token !== null && state.user.auth_token !== undefined
+  }
 });
