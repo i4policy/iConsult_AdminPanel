@@ -4,7 +4,7 @@
     <v-layout column wrap align-center justify-center>
 
         <img src="@/assets/logo.png" width="300" class="ma-5">
- 
+
         <v-card width="400">
 
             <v-card-title primary-title>
@@ -13,8 +13,8 @@
 
             <v-card-text>
                 <v-form id="login-form" v-model="valid">
-                    <v-text-field v-model="user.email" :error="errors.email" label="Email..." required></v-text-field>
-                    <v-text-field v-model="user.password" :error="errors.password" label="Password..." required></v-text-field>
+                    <v-text-field v-model="user.email" :error-messages="errors.email" label="Email..." required></v-text-field>
+                    <v-text-field type="password" v-model="user.password" :error-messages="errors.password" label="Password..." required></v-text-field>
                 </v-form>
             </v-card-text>
 
@@ -41,6 +41,43 @@ export default {
                 password: undefined
             },
             errors: {
+
+            }
+        }
+    },
+
+    watch: {
+        user: {
+
+            deep: true,
+
+            handler() {
+
+                let constraints = {
+
+                    email: {
+                        presence: true,
+                        email: {
+                            message: "Invalid email address"
+                        }
+                    },
+
+                    password: {
+                        presence: true,
+                        length: {
+                            minimum: 8,
+                            maximum: 512,
+                            message: "Password must be 8 to 512 characters!"
+                        }
+                    }
+
+                };
+
+                let errors = this.$validate(this.user, constraints);
+
+                this.errors = errors || {};
+
+                this.disabled = errors !== undefined;
 
             }
         }
