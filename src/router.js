@@ -19,8 +19,12 @@ export default new Router({
         {
           path: "/dashboard",
           component: Dashboard
+        },
+        {
+          path: "/users",
+          component: () => import("./views/users")
         }
       ]
-    }
+    },
   ]
 })

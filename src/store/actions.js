@@ -44,6 +44,78 @@ export default {
 
         });
 
+    },
+
+    saveObject(context, object) {
+
+        return new Promise((resolve, reject) => {
+
+            let ok = false;
+
+            this._vm.$fetch(object.path, "POST", object.data)
+            .then(response => {
+                ok = response.ok;
+                return response.json();
+            })
+            .then(data => {
+                if (ok) return resolve(data);
+                throw data;
+            })
+            .catch(error => {
+                reject(error);
+            });
+
+
+        });
+        
+    },
+
+    deleteObject(context, object) {
+
+        return new Promise((resolve, reject) => {
+
+            let ok = false;
+
+            this._vm.$fetch(object.path, "DELETE")
+            .then(response => {
+                ok = response.ok;
+                return response.json();
+            })
+            .then(data => {
+                if (ok) return resolve(data);
+                throw data;
+            })
+            .catch(error => {
+                reject(error);
+            });
+
+
+        });
+
+    },
+
+    getObjects(context, object) {
+
+        return new Promise((resolve, reject) => {
+
+            let ok = false;
+
+            this._vm.$fetch(object.path)
+            .then(response => {
+                ok = response.ok;
+                return response.json();
+            })
+            .then(data => {
+                if (ok) return resolve(data);
+                throw data;
+            })
+            .catch(error => {
+                reject(error);
+            });
+
+
+        });
+
     }
 
 };
