@@ -19,7 +19,7 @@
 
                 <v-list>
 
-                    <v-list-tile>
+                    <v-list-tile @click="$router.push('/profile')">
 
                         <v-list-tile-avatar>
                             <v-icon>edit</v-icon>
