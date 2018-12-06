@@ -4,8 +4,13 @@ import App from "./App.vue"
 import router from "./router"
 import store from "./store"
 import validate from "validate.js";
+
+import VueRecaptcha from "vue-recaptcha";
+
 import "roboto-fontface/css/roboto/roboto-fontface.css";
 import "material-design-icons-iconfont/dist/material-design-icons.css";
+
+Vue.component("vue-recaptcha", VueRecaptcha);
 
 Vue.config.productionTip = false
 
