@@ -25,12 +25,12 @@ export default new Router({
           component: () => import("./views/documents/documents")
         },
         {
-          path: "/documents/:id",
-          component: () => import("./views/documents/edit")
-        },
-        {
           path: "/documents/add",
           component: () => import("./views/documents/add")
+        },
+        {
+          path: "/documents/:id",
+          component: () => import("./views/documents/edit")
         },
         {
           path: "/users",
