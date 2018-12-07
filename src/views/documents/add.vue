@@ -86,7 +86,11 @@ export default {
                     },
 
                     content: {
-                        presence: true
+                        presence: true,
+                        length: {
+                            minimum: 2,
+                            message: "Content must be more than 2 characters"
+                        }
                     }
 
                 };
