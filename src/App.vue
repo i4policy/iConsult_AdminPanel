@@ -68,3 +68,9 @@ export default {
     }
 }
 </script>
+
+<style>
+.ql-editor p {
+    margin: 1rem 0;
+}
+</style>
