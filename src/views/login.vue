@@ -90,6 +90,12 @@ export default {
         }
     },
 
+    beforeCreate() {
+
+        if (this.$store.getters.loggedIn) this.$router.replace("/dashboard");
+
+    },
+
     watch: {
         user: {
 

@@ -15,7 +15,7 @@
 
     </v-toolbar>
 
-    <v-data-table :total-items="totalSections" :loading="loading" :headers="headers" :pagination.sync="pagination" :items="sections">
+    <v-data-table :total-items="totalSections" :rows-per-page-items="[10, 25, 50]" :loading="loading" :headers="headers" :pagination.sync="pagination" :items="sections">
         <template slot="items" slot-scope="props">
             <td>{{ props.item.title }}</td>
             <td>{{ props.item.createdAt }}</td>
