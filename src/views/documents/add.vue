@@ -7,13 +7,13 @@
 
     <v-card-text>
 
-        <v-form @submit.prevent="saveDocument">
+        <v-form @submit.prevent="save">
 
             <v-text-field type="text" :error-messages="errors.title" v-model="document.title" label="Title"></v-text-field>
 
             <quill-editor class="mt-3" v-model="document.content" ref="documentEditor" :options="editorOptions"></quill-editor>
 
-            <v-btn color="primary" block class="mt-3" :disabled="disabled" :loading="loading">save</v-btn>
+            <v-btn color="primary" type="submit" block class="mt-3" :disabled="disabled" :loading="loading">save</v-btn>
 
         </v-form>
 
@@ -61,7 +61,11 @@ export default {
 
                 this.loading = false;
 
+                this.$router.replace(`/documents/${this.document.id}`);
+
             } catch(error) {
+
+                this.loading = false;
 
                 console.error(error);
 

@@ -22,7 +22,7 @@
 
     <v-snackbar v-model="snackbar">
         Are you sure you want to remove this document?
-        <v-btn flat color="primary" @click.native="deleteUser(); snackbar = false">Yes</v-btn>
+        <v-btn flat color="primary" @click.native="deleteDocument(); snackbar = false">Yes</v-btn>
         <v-btn flat color="primary" @click.native="snackbar = false">Close</v-btn>
     </v-snackbar>
 
@@ -115,7 +115,7 @@ export default {
                 this.loading = true;
 
                 await this.$store.dispatch("deleteObject", {
-                    path: `documents/${this.userId}`
+                    path: `documents/${this.documentId}`
                 });
 
                 this.load();
