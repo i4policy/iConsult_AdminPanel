@@ -32,7 +32,7 @@
 
     <v-divider class="mx-2" inset></v-divider>
 
-    <v-data-table :loading="loading" :headers="headers" :pagination.sync="pagination" :items="users" class="elevation-5">
+    <v-data-table :loading="loading" :total-items="totalUsers" :headers="headers" :pagination.sync="pagination" :items="users" class="elevation-5">
         <template slot="items" slot-scope="props">
             <td>{{ props.item.name }}</td>
             <td>{{ props.item.email }}</td>
