@@ -1,5 +1,5 @@
 <template>
-<v-tabs :grow="true" centered color="primary" slider-color="secondary">
+<v-tabs :grow="true" centered dark color="primary" slider-color="secondary">
     <v-tab>{{ this.document.title }}</v-tab>
     <v-tab>Sections</v-tab>
     <v-tab-item>
@@ -27,7 +27,15 @@
 
         </v-card>
     </v-tab-item>
-    <v-tab-item></v-tab-item>
+    <v-tab-item>
+
+        <v-card>
+        
+            <sections :id="document.id"/>
+
+        </v-card>
+
+    </v-tab-item>
 
 </v-tabs>
 </template>
@@ -40,10 +48,13 @@ import {
     quillEditor
 } from "vue-quill-editor";
 
+import Sections from "./sections";
+
 export default {
     name: "edit-document",
     components: {
-        quillEditor
+        quillEditor,
+        Sections
     },
     data() {
         return {

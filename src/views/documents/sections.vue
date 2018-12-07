@@ -1,29 +1,35 @@
 <template>
 <v-container>
 
-    <v-toolbar color="white" flat class="elevation-1">
-        <v-toolbar-title>Documents</v-toolbar-title>
+    <v-toolbar color="white" flat>
+        
         <v-spacer></v-spacer>
-        <v-btn to="/documents/add" color="primary">new document</v-btn>
+
+        <v-dialog max-width="1200" v-model="sectionDialog" transition="dialog-transition">
+            
+            <v-btn @click.native="section = {};" slot="activator" color="primary">new section</v-btn>
+
+            <document-section @saved="load()" :section="section"/>
+
+        </v-dialog>
+
     </v-toolbar>
 
-    <v-divider class="mx-2" inset></v-divider>
-
-    <v-data-table :loading="loading" :headers="headers" :total-items="totalDocuments" :pagination.sync="pagination" :items="documents" class="elevation-5">
+    <v-data-table :total-items="totalSections" :loading="loading" :headers="headers" :pagination.sync="pagination" :items="sections">
         <template slot="items" slot-scope="props">
-            <td><router-link :to="`documents/${props.item.id}`">{{ props.item.title }}</router-link></td>
-            <td>{{ props.item.draft }}</td>
+            <td>{{ props.item.title }}</td>
             <td>{{ props.item.createdAt }}</td>
             <td>{{ props.item.updatedAt }}</td>
             <td>
-                <v-icon @click="_deleteDocument(props.item.id)" small class="mr-4">delete</v-icon>
+                <v-icon @click="_deleteSection(props.item.id)" small class="mr-4">delete</v-icon>
+                <v-icon @click="editSection(props.item)" small class="mr-4">edit</v-icon>
             </td>
         </template>
     </v-data-table>
 
     <v-snackbar v-model="snackbar">
-        Are you sure you want to remove this document?
-        <v-btn flat color="primary" @click.native="deleteDocument(); snackbar = false">Yes</v-btn>
+        Are you sure you want to remove this section?
+        <v-btn flat color="primary" @click.native="deleteSection(); snackbar = false">Yes</v-btn>
         <v-btn flat color="primary" @click.native="snackbar = false">Close</v-btn>
     </v-snackbar>
 
@@ -31,28 +37,36 @@
 </template>
 
 <script>
+
+import DocumentSection from "./section";
+
 export default {
-    name: "documents",
+    name: "sections",
+    components: {
+        DocumentSection
+    },
+    props: {
+        documentId: {
+            type: String,
+            required: true
+        }
+    },
     data() {
         return {
             loading: "primary",
-            documents: [],
+            sections: [],
             snackbar: false,
             pagination: {},
-            documentId: null,
-            totalDocuments: 0,
+            section: {},
+            sectionDialog: false,
+            sectionId: null,
+            totalSections: 0,
             headers: [
 
                 {
                     text: "Title",
                     sortable: true,
                     value: "title"
-                },
-
-                {
-                    text: "Draft",
-                    sortable: false,
-                    value: "draft"
                 },
 
                 {
@@ -78,11 +92,19 @@ export default {
 
     methods: {
 
-        _deleteDocument(id) {
+        _deleteSection(id) {
 
-            this.documentId = id;
+            this.sectionId = id;
 
             this.snackbar = true;
+
+        },
+
+        editSection(section) {
+
+            this.section = section;
+
+            this.sectionDialog = true;
 
         },
 
@@ -92,18 +114,21 @@ export default {
 
             let filter = {
                 skip: ((this.pagination.page - 1) * this.pagination.rowsPerPage) || undefined,
-                limit: this.pagination.rowsPerPage
+                limit: this.pagination.rowsPerPage,
+                where: {
+                    documentId: this.documentId
+                }
             };
 
             try {
 
                 let data = await this.$store.dispatch("getObjects", {
-                    path: `documents?filter=${JSON.stringify(filter)}`
+                    path: `sections?filter=${JSON.stringify(filter)}`
                 });
 
-                this.documents = data.rows;
+                this.sections = data.rows;
 
-                this.totalDocuments = data.count;
+                this.totalSections = data.count;
 
                 this.loading = false;
 
@@ -115,14 +140,14 @@ export default {
 
         },
 
-        async deleteDocument() {
+        async deleteSection() {
 
             try {
 
                 this.loading = true;
 
                 await this.$store.dispatch("deleteObject", {
-                    path: `documents/${this.documentId}`
+                    path: `sections/${this.sectionId}`
                 });
 
                 this.load();
