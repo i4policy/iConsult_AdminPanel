@@ -8,13 +8,9 @@
 
         <v-toolbar color="#212121" flat>
           <v-list>
-            <v-list-tile avatar>
-              <v-list-tile-avatar>
-                <v-avatar>
-                  <img src="@/assets/logo.white.png">
-                </v-avatar>
-              </v-list-tile-avatar>
-              <v-list-tile-title v-if="!$store.state.drawer"><h4>I4Policy Manifesto</h4></v-list-tile-title>
+            <v-list-tile>
+              <img class="mr-2" src="@/assets/logo.white.png" width="80">
+              <v-list-tile-title v-if="!$store.state.drawer"><h3>I4Policy Manifesto</h3></v-list-tile-title>
             </v-list-tile>
           </v-list>
         </v-toolbar>
@@ -27,6 +23,15 @@
           </v-list-tile-avatar>
           <v-list-tile-content>
             <v-list-tile-title><router-link to="/dashboard">Dashboard</router-link></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+
+        <v-list-tile>
+          <v-list-tile-avatar>
+            <v-icon color="grey">book</v-icon>
+          </v-list-tile-avatar>
+          <v-list-tile-content>
+            <v-list-tile-title><router-link to="/documents">Documents</router-link></v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
 

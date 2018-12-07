@@ -21,6 +21,10 @@ export default new Router({
           component: Dashboard
         },
         {
+          path: "/documents",
+          component: () => import("./views/documents")
+        },
+        {
           path: "/users",
           component: () => import("./views/users")
         }

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "material-design-icons-iconfont": "^3.0.3",
+    "quill": "^1.3.6",
     "roboto-fontface": "*",
     "validate.js": "^0.12.0",
     "vue": "^2.5.17",
