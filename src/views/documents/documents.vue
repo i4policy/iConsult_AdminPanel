@@ -12,6 +12,7 @@
     <v-data-table :loading="loading" :headers="headers" :pagination.sync="pagination" :items="documents" class="elevation-5">
         <template slot="items" slot-scope="props">
             <td><router-link :to="`documents/${props.item.id}`">{{ props.item.title }}</router-link></td>
+            <td>{{ props.item.draft }}</td>
             <td>{{ props.item.createdAt }}</td>
             <td>{{ props.item.updatedAt }}</td>
             <td>
@@ -46,6 +47,12 @@ export default {
                     text: "Title",
                     sortable: true,
                     value: "title"
+                },
+
+                {
+                    text: "Draft",
+                    sortable: false,
+                    value: "draft"
                 },
 
                 {
