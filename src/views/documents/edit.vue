@@ -1,31 +1,35 @@
 <template>
-<v-card>
+<v-tabs :grow="true" centered color="primary" slider-color="secondary">
+    <v-tab>{{ this.document.title }}</v-tab>
+    <v-tab>Sections</v-tab>
+    <v-tab-item>
+        <v-card>
 
-    <v-card-title primary-title>
-        <h1>{{ this.document.title }}</h1>
-    </v-card-title>
+            <v-card-text>
 
-    <v-card-text>
+                <v-form @submit.prevent="save">
 
-        <v-form @submit.prevent="save">
+                    <v-switch label="Draft" :error-messages="document.draft" v-model="document.draft" color="primary"></v-switch>
 
-            <v-switch label="Draft" :error-messages="document.draft" v-model="document.draft" color="primary"></v-switch>
+                    <v-text-field type="text" :error-messages="errors.title" v-model="document.title" label="Title"></v-text-field>
 
-            <v-text-field type="text" :error-messages="errors.title" v-model="document.title" label="Title"></v-text-field>
+                    <quill-editor class="mt-3" v-model="document.content" ref="documentEditor" :options="editorOptions"></quill-editor>
 
-            <quill-editor class="mt-3" v-model="document.content" ref="documentEditor" :options="editorOptions"></quill-editor>
+                    <v-btn color="primary" type="submit" block class="mt-3" :disabled="disabled" :loading="loading">save</v-btn>
 
-            <v-btn color="primary" type="submit" block class="mt-3" :disabled="disabled" :loading="loading">save</v-btn>
+                </v-form>
 
-        </v-form>
+                <v-card-actions>
+                    <h3>Updated At: {{ this.document.updatedAt }}</h3>
+                </v-card-actions>
 
-        <v-card-actions>
-            <h3>Updated At: {{ this.document.updatedAt }}</h3>
-        </v-card-actions>
+            </v-card-text>
 
-    </v-card-text>
+        </v-card>
+    </v-tab-item>
+    <v-tab-item></v-tab-item>
 
-</v-card>
+</v-tabs>
 </template>
 
 <script>
@@ -72,7 +76,7 @@ export default {
 
                 this.loading = false;
 
-            } catch(error) {
+            } catch (error) {
 
                 this.loading = false;
 
@@ -95,7 +99,7 @@ export default {
 
             this.loading = false;
 
-        } catch(error) {
+        } catch (error) {
 
             console.error(error);
 
