@@ -1,5 +1,5 @@
 <template>
-<v-card flat>
+<v-card>
 
     <v-card-title primary-title>
         <h1>New Document</h1>
