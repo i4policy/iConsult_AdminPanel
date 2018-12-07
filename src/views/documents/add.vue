@@ -9,6 +9,8 @@
 
         <v-form @submit.prevent="save">
 
+            <v-switch label="Draft" :error-messages="document.draft" v-model="document.draft" color="primary"></v-switch>
+
             <v-text-field type="text" :error-messages="errors.title" v-model="document.title" label="Title"></v-text-field>
 
             <quill-editor class="mt-3" v-model="document.content" ref="documentEditor" :options="editorOptions"></quill-editor>
@@ -40,6 +42,7 @@ export default {
             loading: false,
             disabled: true,
             document: {
+                draft: true,
                 title: undefined,
                 content: undefined
             },
@@ -79,6 +82,11 @@ export default {
             deep: true,
             handler() {
                 let constraints = {
+
+                    draft: {
+                        presence: true,
+                        inclusion: [true, false]
+                    },
 
                     title: {
                         presence: true,
