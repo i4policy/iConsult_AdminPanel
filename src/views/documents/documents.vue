@@ -2,7 +2,7 @@
 <v-container>
 
     <v-toolbar color="white" flat class="elevation-1">
-        <v-toolbar-title>Users</v-toolbar-title>
+        <v-toolbar-title>Documents</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn to="/documents/add" color="primary">new document</v-btn>
     </v-toolbar>
@@ -11,7 +11,7 @@
 
     <v-data-table :loading="loading" :headers="headers" :pagination.sync="pagination" :items="documents" class="elevation-5">
         <template slot="items" slot-scope="props">
-            <td>{{ props.item.title }}</td>
+            <td><router-link :to="`documents/${props.item.id}`">{{ props.item.title }}</router-link></td>
             <td>{{ props.item.createdAt }}</td>
             <td>{{ props.item.updatedAt }}</td>
             <td>
@@ -21,7 +21,7 @@
     </v-data-table>
 
     <v-snackbar v-model="snackbar">
-        Are you sure you want to remove this user?
+        Are you sure you want to remove this document?
         <v-btn flat color="primary" @click.native="deleteUser(); snackbar = false">Yes</v-btn>
         <v-btn flat color="primary" @click.native="snackbar = false">Close</v-btn>
     </v-snackbar>

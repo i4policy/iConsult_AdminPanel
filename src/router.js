@@ -22,7 +22,15 @@ export default new Router({
         },
         {
           path: "/documents",
-          component: () => import("./views/documents")
+          component: () => import("./views/documents/documents")
+        },
+        {
+          path: "/documents/:id",
+          component: () => import("./views/documents/edit")
+        },
+        {
+          path: "/documents/add",
+          component: () => import("./views/documents/add")
         },
         {
           path: "/users",

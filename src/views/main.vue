@@ -2,11 +2,11 @@
 
   <v-container fluid full-height>
 
-    <v-navigation-drawer class="primary" :app="true" :dark="true" width="250" :mini-variant.sync="$store.state.drawer">
+    <v-navigation-drawer :app="true" :dark="true" width="250" :mini-variant.sync="$store.state.drawer">
 
       <v-list>
 
-        <v-toolbar color="#212121" flat>
+        <v-toolbar color="#414141" flat>
           <v-list>
             <v-list-tile>
               <img class="mr-2" src="@/assets/logo.white.png" width="80">
@@ -19,7 +19,7 @@
 
         <v-list-tile>
           <v-list-tile-avatar>
-            <v-icon color="grey">dashboard</v-icon>
+            <v-icon color="primary">dashboard</v-icon>
           </v-list-tile-avatar>
           <v-list-tile-content>
             <v-list-tile-title><router-link to="/dashboard">Dashboard</router-link></v-list-tile-title>
@@ -28,7 +28,7 @@
 
         <v-list-tile>
           <v-list-tile-avatar>
-            <v-icon color="grey">book</v-icon>
+            <v-icon color="primary">book</v-icon>
           </v-list-tile-avatar>
           <v-list-tile-content>
             <v-list-tile-title><router-link to="/documents">Documents</router-link></v-list-tile-title>
@@ -37,7 +37,7 @@
 
         <v-list-tile>
           <v-list-tile-avatar>
-            <v-icon color="grey">people</v-icon>
+            <v-icon color="primary">people</v-icon>
           </v-list-tile-avatar>
 
           <v-list-tile-content>
@@ -63,7 +63,10 @@
 
 <style>
 a {
-    color: #9e9e9e !important;
-    text-decoration: none;
+  text-decoration: none;
+}
+.router-link-active {
+  text-decoration: underline;
+  font-weight: 900;
 }
 </style>
