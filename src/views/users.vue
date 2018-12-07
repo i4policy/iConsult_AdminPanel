@@ -5,7 +5,7 @@
         <v-toolbar-title>Users</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-dialog max-width="500px" v-model="addUserDialog" transition="dialog-transition">
-            <v-btn slot="activator" color="primary">new user</v-btn>
+            <v-btn slot="activator" color="primary">new admin user</v-btn>
 
             <v-card class="pa-5">
 
@@ -175,10 +175,7 @@ export default {
 
             try {
 
-                await this.$store.dispatch("saveObject", {
-                    path: "users",
-                    data: this.user
-                });
+                await this.$store.dispatch("register", this.user);
 
                 this.loading = false;
 
