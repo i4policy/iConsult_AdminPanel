@@ -37,6 +37,15 @@
 
         <v-list-tile>
           <v-list-tile-avatar>
+            <v-icon color="primary">reply</v-icon>
+          </v-list-tile-avatar>
+          <v-list-tile-content>
+            <v-list-tile-title><router-link to="/responses">Responses</router-link></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+
+        <v-list-tile>
+          <v-list-tile-avatar>
             <v-icon color="primary">people</v-icon>
           </v-list-tile-avatar>
 
