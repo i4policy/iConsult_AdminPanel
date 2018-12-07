@@ -29,9 +29,9 @@
     </v-tab-item>
     <v-tab-item>
 
-        <v-card>
+        <v-card v-if="!loading">
         
-            <sections :id="document.id"/>
+            <sections :documentId="document.id"/>
 
         </v-card>
 
