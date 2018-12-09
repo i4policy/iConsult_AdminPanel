@@ -29,9 +29,11 @@
 
 <script>
 import Social from "../social";
+import { notLoggedIn } from "../guards";
 
 export default {
     name: "login",
+    beforeCreate: notLoggedIn,
     mixins: [
         Social
     ],
@@ -88,12 +90,6 @@ export default {
             }
 
         }
-    },
-
-    beforeCreate() {
-
-        if (this.$store.getters.loggedIn) this.$router.replace("/dashboard");
-
     },
 
     watch: {
