@@ -39,6 +39,10 @@ export default new Router({
         {
           path: "/profile",
           component: () => import("./views/profile")
+        },
+        {
+          path: "/responses",
+          component: () => import("./views/responses")
         }
       ]
     },

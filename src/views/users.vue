@@ -126,7 +126,8 @@ export default {
             let filter = {
                 skip: ((this.pagination.page - 1) * this.pagination.rowsPerPage) || undefined,
                 limit: this.pagination.rowsPerPage,
-                include: "userRole"
+                include: "userRole",
+                order: `${this.pagination.sortBy} ${this.pagination.descending ? "DESC" : "ASC"}`
             };
 
             try {
