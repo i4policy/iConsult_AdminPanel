@@ -11,6 +11,7 @@
     <v-data-table :loading="loading" :headers="headers" :total-items="totalResponses" :pagination.sync="pagination" :items="responses" class="elevation-5">
         <template slot="items" slot-scope="props">
             <td><router-link :to="`responses/${props.item.id}`">{{ props.item.name }}</router-link></td>
+            <td>{{ props.item.email }}</td>
         </template>
     </v-data-table>
 
@@ -32,6 +33,11 @@ export default {
                     text: "From",
                     sortable: true,
                     value: "name"
+                },
+                {
+                    text: "Email",
+                    sortable: false,
+                    value: "email"
                 }
 
             ]

@@ -42,7 +42,11 @@ export default new Router({
         },
         {
           path: "/responses",
-          component: () => import("./views/responses")
+          component: () => import("./views/responses/responses")
+        },
+        {
+          path: "/respones/:id",
+          component: () => import("./views/responses/response")
         }
       ]
     },
