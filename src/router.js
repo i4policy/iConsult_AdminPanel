@@ -35,6 +35,10 @@ export default new Router({
         {
           path: "/users",
           component: () => import("./views/users")
+        },
+        {
+          path: "/profile",
+          component: () => import("./views/profile")
         }
       ]
     },

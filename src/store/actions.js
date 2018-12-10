@@ -116,6 +116,26 @@ export default {
 
         });
 
+    },
+
+    changePassword(context, passwords) {
+
+        return new Promise((resolve, reject) => {
+
+            this._vm.$fetch("users/change-password",  "POST", passwords)
+            .then(response => {
+                if (response.ok) return resolve();
+                return response.json();
+            })
+            .then(data => {
+                throw data;
+            })
+            .catch(error => {
+                reject(error);
+            });
+            
+        });
+
     }
 
 };
