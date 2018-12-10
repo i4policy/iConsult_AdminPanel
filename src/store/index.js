@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     user: null,
     loading: false,
-    drawer: false
+    drawer: true
   },
   mutations: mutations,
   actions: actions,

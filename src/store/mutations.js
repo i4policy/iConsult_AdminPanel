@@ -10,5 +10,9 @@ export default {
     
     updateLoading(state, loading) {
         state.loading = loading;
+    },
+
+    toggleSidebar(state) {
+        state.drawer = !state.drawer;
     }
 }

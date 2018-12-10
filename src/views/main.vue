@@ -1,7 +1,7 @@
 <template>
 <v-container fluid full-height>
 
-    <v-navigation-drawer :app="true" :dark="true" width="250" :mini-variant.sync="$store.state.drawer">
+    <v-navigation-drawer :app="true" :dark="true" width="250" v-model="$store.state.drawer">
 
         <v-list>
 
@@ -9,7 +9,7 @@
                 <v-list>
                     <v-list-tile>
                         <img class="mr-2" src="@/assets/logo.white.png" width="80">
-                        <v-list-tile-title v-if="!$store.state.drawer">
+                        <v-list-tile-title v-if="$store.state.drawer">
                             <h3>I4Policy Manifesto</h3>
                         </v-list-tile-title>
                     </v-list-tile>

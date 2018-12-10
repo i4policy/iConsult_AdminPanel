@@ -2,13 +2,12 @@
 <v-app>
     <v-toolbar app>
 
-        <v-toolbar-side-icon v-if="$store.getters.loggedIn">
-            <v-icon @click="$store.state.drawer = !$store.state.drawer">menu</v-icon>
-        </v-toolbar-side-icon>
+        <v-icon @click="$store.commit('toggleSidebar')">menu</v-icon>
 
         <v-toolbar-title v-if="!$store.getters.loggedIn" class="headline text-uppercase pt-2">
             <img width="50" src="@/assets/logo.png">
         </v-toolbar-title>
+
             <v-spacer></v-spacer>
             <span class="font-weight-bold" v-if="!$store.getters.loggedIn">I4POLICY ADMIN PANEL</span>
 
