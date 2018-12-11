@@ -1,7 +1,7 @@
 <template>
 <v-card>
 
-    <div ref="document" class="container no-select">
+    <div ref="document" class="container no-select document">
 
         <div v-html="document.content"></div>
 
@@ -12,11 +12,9 @@
             </template>
 
             <template slot="content" slot-scope="{ item }">
-                <div>
                     <div>
                         <div v-html="item.content"></div>
                     </div>
-                </div>
             </template>
 
         </accordion>
@@ -80,6 +78,8 @@ export default {
 
                 if (!this.$store.getters.loggedIn) return;
 
+                this.ann = new annotator.App();
+
                 this.ann.include(annotator.ui.main, {
                     element: this.$refs.document
                 });
@@ -102,9 +102,9 @@ export default {
                 });
 
                 this.ann.start()
-                    .then(() => {
-                        this.ann.annotations.load()
-                    });
+                .then(() => {
+                    this.ann.annotations.load()
+                });
 
             } catch (error) {
 
