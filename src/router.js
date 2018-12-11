@@ -45,7 +45,7 @@ export default new Router({
           component: () => import("./views/responses/responses")
         },
         {
-          path: "/respones/:id",
+          path: "/responses/:id",
           component: () => import("./views/responses/response")
         }
       ]

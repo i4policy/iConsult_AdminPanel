@@ -10,7 +10,7 @@
 
     <v-data-table :loading="loading" :headers="headers" :total-items="totalResponses" :pagination.sync="pagination" :items="responses" class="elevation-5">
         <template slot="items" slot-scope="props">
-            <td><router-link :to="`responses/${props.item.id}`">{{ props.item.name }}</router-link></td>
+            <td><router-link :to="`responses/${props.item.id}?documentId=${documentId}`">{{ props.item.name }}</router-link></td>
             <td>{{ props.item.email }}</td>
         </template>
     </v-data-table>
@@ -26,6 +26,7 @@ export default {
             loading: "primary",
             responses: [],
             pagination: {},
+            documentId: "5c0646c75277e02775050a42",
             totalResponses: 0,
             headers: [
 

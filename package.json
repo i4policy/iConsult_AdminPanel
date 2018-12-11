@@ -7,6 +7,10 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@profesia/vue-accordion-component": "^2.0.4",
+    "annotator": "^2.0.0-alpha.3",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
     "material-design-icons-iconfont": "^3.0.3",
     "roboto-fontface": "*",
     "validate.js": "^0.12.0",
