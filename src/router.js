@@ -3,6 +3,11 @@ import Router from 'vue-router'
 import Login from "./views/login";
 import Main from "./views/main";
 import Dashboard from "./views/dashboard";
+import Documents from "./views/documents/documents";
+import EditDocument from "./views/documents/edit";
+import AddDocument from "./views/documents/add";
+import Responses from "./views/responses/responses";
+import Response from "./views/responses/response";
 
 Vue.use(Router)
 
@@ -22,15 +27,15 @@ export default new Router({
         },
         {
           path: "/documents",
-          component: () => import("./views/documents/documents")
+          component: Documents
         },
         {
           path: "/documents/add",
-          component: () => import("./views/documents/add")
+          component: () => AddDocument
         },
         {
           path: "/documents/:id",
-          component: () => import("./views/documents/edit")
+          component: () => EditDocument
         },
         {
           path: "/users",
@@ -42,11 +47,11 @@ export default new Router({
         },
         {
           path: "/responses",
-          component: () => import("./views/responses/responses")
+          component: Responses
         },
         {
           path: "/responses/:id",
-          component: () => import("./views/responses/response")
+          component: Response
         }
       ]
     },
