@@ -11,9 +11,9 @@
 
                     <v-switch label="Draft" :error-messages="document.draft" v-model="document.draft" color="primary"></v-switch>
 
-                    <v-text-field type="text" :error-messages="errors.title" v-model="document.title" label="Title"></v-text-field>
+                    <v-text-field :disabled="!editable" type="text" :error-messages="errors.title" v-model="document.title" label="Title"></v-text-field>
 
-                    <quill-editor class="mt-3" v-model="document.content" ref="documentEditor" :options="editorOptions"></quill-editor>
+                    <quill-editor :disabled="!editable" class="mt-3" v-model="document.content" ref="documentEditor" :options="editorOptions"></quill-editor>
 
                     <v-btn v-if="editable" color="primary" type="submit" block class="mt-3" :disabled="disabled" :loading="loading">save</v-btn>
 
@@ -31,7 +31,7 @@
 
         <v-card v-if="!loading">
         
-            <sections :documentId="document.id"/>
+            <sections :editable="editable" :documentId="document.id"/>
 
         </v-card>
 

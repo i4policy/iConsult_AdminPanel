@@ -3,13 +3,13 @@
 
     <v-form @submit.prevent="save">
 
-        <v-text-field @input="error = null" v-model="section.title" label="Title" :error-messages="errors.title" />
+        <v-text-field :disabled="!editable" @input="error = null" v-model="section.title" label="Title" :error-messages="errors.title" />
 
-        <quill-editor class="mt-3" v-model="section.content" ref="sectionEditor"/>
+        <quill-editor :disabled="!editable" class="mt-3" v-model="section.content" ref="sectionEditor"/>
 
         <v-card-actions>
 
-            <v-btn block type="submit" :disabled="disabled" :loading="loading" color="primary">save</v-btn>
+            <v-btn v-if="editable" block type="submit" :disabled="disabled" :loading="loading" color="primary">save</v-btn>
 
         </v-card-actions>
 
@@ -36,6 +36,10 @@ export default {
         section: {
             type: Object,
             required: true
+        },
+        editable: {
+            type: Boolean,
+            default: true
         }
     },
     data() {

@@ -9,7 +9,7 @@
             
             <v-btn @click.native="section = {};" slot="activator" color="primary">new section</v-btn>
 
-            <document-section @saved="load()" :section="section"/>
+            <document-section :editable="editable" @saved="load()" :section="section"/>
 
         </v-dialog>
 
@@ -49,6 +49,10 @@ export default {
         documentId: {
             type: String,
             required: true
+        },
+        editable: {
+            type: Boolean,
+            default: true
         }
     },
     data() {
