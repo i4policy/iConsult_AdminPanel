@@ -31,11 +31,11 @@ export default new Router({
         },
         {
           path: "/documents/add",
-          component: () => AddDocument
+          component: AddDocument
         },
         {
           path: "/documents/:id",
-          component: () => EditDocument
+          component: EditDocument
         },
         {
           path: "/users",
