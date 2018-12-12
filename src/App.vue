@@ -2,7 +2,7 @@
 <v-app>
     <v-toolbar app>
 
-        <v-icon @click="$store.commit('toggleSidebar')">menu</v-icon>
+        <v-icon v-if="$store.getters.loggedIn" @click="$store.commit('toggleSidebar')">menu</v-icon>
 
         <v-toolbar-title v-if="!$store.getters.loggedIn" class="headline text-uppercase pt-2">
             <img width="50" src="@/assets/logo.png">
