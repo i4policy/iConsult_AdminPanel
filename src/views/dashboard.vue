@@ -6,11 +6,16 @@
     </v-card-title>
 
     <v-card-text v-if="stats">
-        <h1>Reviews And Comments Per Section</h1>
+
+        <h2>Total Number Of Annotations</h2>
+
+        <h2>{{ stats.totalAnnotations }}</h2>
+
+        <h2>Reviews And Comments Per Section</h2>
 
         <v-layout row wrap>
 
-            <v-flex xs3 v-for="(stat, title) in stats" :key="stat.title">
+            <v-flex xs3 v-for="(stat, title) in stats.sections" :key="stat.title">
 
                 <v-card class="ma-2">
                     <v-card-title primary>
