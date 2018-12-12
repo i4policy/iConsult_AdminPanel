@@ -9,7 +9,7 @@
 
         <h2 class="center">TOTAL NUMBER OF ANNOTATIONS</h2>
 
-        <h2 class="center">{{ stats.totalAnnotations }}</h2>
+        <h1 class="center large">{{ stats.totalAnnotations }}</h1>
 
         <h2 class="center">REVIEWS AND COMMENTS PER SECTION</h2>
 
@@ -153,5 +153,11 @@ export default {
     text-align: center;
     padding: 1rem;
     width: 100%;
+}
+
+.large {
+    font-size: 5rem;
+    padding: 0;
+    font-weight: 900;
 }
 </style>
