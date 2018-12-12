@@ -125,6 +125,10 @@ export default {
 
 <style>
 
+.annotator-viewer div {
+  font-style: normal !important;
+}
+
 .annotator-controls {
     display: none;
 }
