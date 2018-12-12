@@ -87,6 +87,8 @@ export default {
 
         this.documents = documents.rows;
 
+        this.documentId = this.documents[0].id;
+
     },
 
     methods: {

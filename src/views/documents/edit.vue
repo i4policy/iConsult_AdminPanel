@@ -15,7 +15,7 @@
 
                     <quill-editor class="mt-3" v-model="document.content" ref="documentEditor" :options="editorOptions"></quill-editor>
 
-                    <v-btn color="primary" type="submit" block class="mt-3" :disabled="disabled" :loading="loading">save</v-btn>
+                    <v-btn v-if="editable" color="primary" type="submit" block class="mt-3" :disabled="disabled" :loading="loading">save</v-btn>
 
                 </v-form>
 
@@ -60,6 +60,7 @@ export default {
         return {
             loading: false,
             disabled: true,
+            editable: true,
             document: {
                 draft: true,
                 title: undefined,
@@ -85,6 +86,8 @@ export default {
                     data: this.document
                 });
 
+                this.editable = this.document.draft;
+
                 this.loading = false;
 
             } catch (error) {
@@ -107,6 +110,8 @@ export default {
             this.document = await this.$store.dispatch("getObjects", {
                 path: this.$route.path
             });
+
+            this.editable = this.document.draft;
 
             this.loading = false;
 
