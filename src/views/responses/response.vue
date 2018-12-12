@@ -15,6 +15,26 @@
                     <div>
                         <div v-html="item.content"></div>
                     </div>
+
+                    <v-layout row wrap>
+                        <v-flex xs6 v-if="item.reviews[0]">
+                            <v-card class="ma-2">
+                                <v-card-text>
+                                    <h3>Review</h3>
+                                    <p>{{ item.reviews[0] ? item.reviews[0].content : "Not reviewed" }}</p>
+                                </v-card-text>
+                            </v-card>
+                        </v-flex>
+                        <v-flex xs6 v-if="item.comments[0]">
+                            <v-card class="ma-2">
+                                <v-card-text>
+                                    <h3>Comment</h3>
+                                    <p>{{ item.comments[0] ? item.comments[0].content : "Not commented" }}</p>
+                                </v-card-text>
+                            </v-card>
+                        </v-flex>
+                    </v-layout>
+
             </template>
 
         </accordion>
