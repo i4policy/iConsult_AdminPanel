@@ -28,16 +28,26 @@
 
                         <v-layout class="center" row wrap>
 
-                            <v-flex xs4>
-                                {{ stat.reviews }} Reviews
+                            <v-flex xs6>
+                                Reviews - <strong>{{ stat.reviews }}</strong>
                             </v-flex>
 
-                            <v-flex xs4>
-                                {{ stat.comments }} Comments
+                            <v-flex xs6>
+                                Comments - <strong>{{ stat.comments }}</strong>
                             </v-flex>
 
-                            <v-flex xs4>
-                                {{ stat.ratings }} Ratings
+                        </v-layout>
+
+                        <v-layout class="center" row wrap>
+
+                            <v-flex xs6>
+
+                                Ratings - <strong>{{ stat.ratings }}</strong>
+
+                            </v-flex>
+
+                            <v-flex xs6>
+                                Average Rating - <strong>{{ stat.averageRating || 0 }}</strong>
                             </v-flex>
 
                         </v-layout>
@@ -50,20 +60,37 @@
 
         </v-layout>
 
-        <v-layout justify-center class="pa-4">
-            <v-card class="pa-4">
-                <v-card-title>
-                    <div style="text-align: center; width: 100%;">
-                        <img src="@/assets/logo.png" width="100">
-                    </div>
-                </v-card-title>
-                <v-card-text>
-                    <canvas width="600" height="300" ref="canvas"></canvas>
-                </v-card-text>
-                <v-card-title>
-                    <h4 style="text-align: center; width: 100%;">Engagement report</h4>
-                </v-card-title>
-            </v-card>
+        <v-layout row wrap justify-center class="pa-4">
+            <v-flex xs6>
+                <v-card class="pa-4">
+                    <v-card-title>
+                        <div style="text-align: center; width: 100%;">
+                            <img src="@/assets/logo.png" width="100">
+                        </div>
+                    </v-card-title>
+                    <v-card-text>
+                        <canvas width="600" height="300" ref="canvas"></canvas>
+                    </v-card-text>
+                    <v-card-title>
+                        <h4 style="text-align: center; width: 100%;">Engagement report</h4>
+                    </v-card-title>
+                </v-card>
+            </v-flex>
+            <v-flex xs6>
+                <v-card class="pa-4">
+                    <v-card-title>
+                        <div style="text-align: center; width: 100%;">
+                            <img src="@/assets/logo.png" width="100">
+                        </div>
+                    </v-card-title>
+                    <v-card-text>
+                        <canvas width="600" height="300" ref="canvas2"></canvas>
+                    </v-card-text>
+                    <v-card-title>
+                        <h4 style="text-align: center; width: 100%;">Section Rating</h4>
+                    </v-card-title>
+                </v-card>
+            </v-flex>
         </v-layout>
 
     </v-card-text>
@@ -102,22 +129,21 @@ export default {
                 path: `documents/stats?documentId=${this.documentId}`
             });
 
-            console.log(this.$refs.canvas);
-
             new Chart(this.$refs.canvas, {
                 type: "bar",
                 data: this.barData,
                 options: {
                     responsive: true,
                     maintainAspectRatio: true
-                },
-                scales: {
-                    yAxis: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Users'
-                        }
-                    }]
+                }
+            });
+
+            new Chart(this.$refs.canvas2, {
+                type: "bar",
+                data: this.sectionBarData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true
                 }
             });
         }
@@ -130,7 +156,7 @@ export default {
                 labels: [],
                 datasets: [{
                     label: "Engagement Report",
-                    backgroundColor: "#009688",
+                    backgroundColor: "#212121",
                     data: []
                 }]
             };
@@ -139,6 +165,26 @@ export default {
                 let s = this.stats.sections[t];
                 data.labels.push(t);
                 data.datasets[0].data.push(s.totalEngagement);
+            }
+
+            return data;
+
+        },
+        sectionBarData() {
+
+            let data = {
+                labels: [],
+                datasets: [{
+                    label: "Section Rating",
+                    backgroundColor: "#960000",
+                    data: []
+                }]
+            };
+
+            for (let t in this.stats.sections) {
+                let s = this.stats.sections[t];
+                data.labels.push(t);
+                data.datasets[0].data.push(s.averageRating);
             }
 
             return data;
