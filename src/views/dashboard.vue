@@ -28,12 +28,16 @@
 
                         <v-layout class="center" row wrap>
 
-                            <v-flex xs6>
+                            <v-flex xs4>
                                 {{ stat.reviews }} Reviews
                             </v-flex>
 
-                            <v-flex xs6>
+                            <v-flex xs4>
                                 {{ stat.comments }} Comments
+                            </v-flex>
+
+                            <v-flex xs4>
+                                {{ stat.ratings }} Ratings
                             </v-flex>
 
                         </v-layout>
