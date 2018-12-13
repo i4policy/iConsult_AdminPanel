@@ -87,7 +87,7 @@
                         <canvas width="600" height="300" ref="canvas2"></canvas>
                     </v-card-text>
                     <v-card-title>
-                        <h4 style="text-align: center; width: 100%;">Section Rating</h4>
+                        <h4 style="text-align: center; width: 100%;">Section Average Rating</h4>
                     </v-card-title>
                 </v-card>
             </v-flex>
@@ -175,7 +175,7 @@ export default {
             let data = {
                 labels: [],
                 datasets: [{
-                    label: "Section Rating",
+                    label: "Section Average Rating",
                     backgroundColor: "#960000",
                     data: []
                 }]
