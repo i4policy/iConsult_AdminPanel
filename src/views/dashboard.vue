@@ -126,7 +126,7 @@ export default {
         async load() {
 
             this.stats = await this.$store.dispatch("getObjects", {
-                path: `documents/stats?documentId=${this.documentId}`
+                path: `documents/${this.documentId}/stats`
             });
 
             new Chart(this.$refs.canvas, {
