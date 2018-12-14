@@ -28,11 +28,7 @@
 
                         <v-layout class="center" row wrap>
 
-                            <v-flex xs6>
-                                Reviews - <strong>{{ stat.reviews }}</strong>
-                            </v-flex>
-
-                            <v-flex xs6>
+                            <v-flex xs12>
                                 Comments - <strong>{{ stat.comments }}</strong>
                             </v-flex>
 
