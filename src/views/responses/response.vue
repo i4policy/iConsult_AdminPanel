@@ -17,15 +17,7 @@
                     </div>
 
                     <v-layout row wrap>
-                        <v-flex xs6 v-if="item.reviews[0]">
-                            <v-card class="ma-2">
-                                <v-card-text>
-                                    <h3>Review</h3>
-                                    <p>{{ item.reviews[0] ? item.reviews[0].content : "Not reviewed" }}</p>
-                                </v-card-text>
-                            </v-card>
-                        </v-flex>
-                        <v-flex xs6 v-if="item.comments[0]">
+                        <v-flex xs12 v-if="item.comments[0]">
                             <v-card class="ma-2">
                                 <v-card-text>
                                     <h3>Comment</h3>
@@ -75,14 +67,6 @@ export default {
                 filter.include.scope = {
                     include: [{
                             relation: "comments",
-                            scope: {
-                                where: {
-                                    userId: this.$route.params.id
-                                }
-                            }
-                        },
-                        {
-                            relation: "reviews",
                             scope: {
                                 where: {
                                     userId: this.$route.params.id
