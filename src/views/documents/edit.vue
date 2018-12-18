@@ -11,6 +11,12 @@
 
                     <v-switch label="Draft" :error-messages="document.draft" v-model="document.draft" color="primary"></v-switch>
 
+                    <v-select v-model="document.language" :items="['english', 'french']" label="Language" :error-messages="errors.language">
+                    </v-select>
+
+                    <v-select v-model="document.parentDocumentId" :items="documents" item-text="title" item-value="id" label="Parent Document">
+                    </v-select>
+
                     <v-text-field :disabled="!editable" type="text" :error-messages="errors.title" v-model="document.title" label="Title"></v-text-field>
 
                     <quill-editor :disabled="!editable" class="mt-3" v-model="document.content" ref="documentEditor" :options="editorOptions"></quill-editor>
@@ -30,8 +36,8 @@
     <v-tab-item>
 
         <v-card v-if="!loading">
-        
-            <sections :editable="editable" :documentId="document.id"/>
+
+            <sections :editable="editable" :documentId="document.id" />
 
         </v-card>
 
@@ -66,6 +72,7 @@ export default {
                 title: undefined,
                 content: undefined
             },
+            documents: [],
             errors: {},
             editorOptions: {}
         }
@@ -110,6 +117,12 @@ export default {
             this.document = await this.$store.dispatch("getObjects", {
                 path: this.$route.path
             });
+
+            let documents = await this.$store.dispatch("getObjects", {
+                path: "/documents"
+            });
+
+            this.documents = documents.rows;
 
             this.editable = this.document.draft;
 

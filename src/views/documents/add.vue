@@ -9,7 +9,13 @@
 
         <v-form @submit.prevent="save">
 
-            <v-switch label="Draft" :error-messages="document.draft" v-model="document.draft" color="primary"></v-switch>
+            <v-select v-model="document.language" :items="['english', 'french']" label="Language" :error-messages="errors.language">
+            </v-select>
+
+            <v-select v-model="document.parentDocumentId" :items="documents" item-text="title" item-value="id" label="Parent Document">
+            </v-select>
+
+            <v-switch label="Draft" :error-messages="errors.draft" v-model="document.draft" color="primary"></v-switch>
 
             <v-text-field type="text" :error-messages="errors.title" v-model="document.title" label="Title"></v-text-field>
 
@@ -44,8 +50,11 @@ export default {
             document: {
                 draft: true,
                 title: undefined,
-                content: undefined
+                content: undefined,
+                language: undefined,
+                parentDocumentId: undefined
             },
+            documents: [],
             errors: {},
             editorOptions: {}
         }
@@ -66,7 +75,7 @@ export default {
 
                 this.$router.replace(`/documents/${this.document.id}`);
 
-            } catch(error) {
+            } catch (error) {
 
                 this.loading = false;
 
@@ -77,11 +86,34 @@ export default {
         }
     },
 
+    async created() {
+
+        try {
+
+            let documents = await this.$store.dispatch("getObjects", {
+                path: "/documents"
+            });
+
+            this.documents = documents.rows;
+
+        } catch (error) {
+
+            console.error(error);
+
+        }
+
+    },
+
     watch: {
         document: {
             deep: true,
             handler() {
                 let constraints = {
+
+                    language: {
+                        presence: true,
+                        inclusion: ["english", "french"]
+                    },
 
                     draft: {
                         presence: true,
