@@ -3,6 +3,8 @@
 
     <v-card-title>
         <v-select v-model="documentId" :items="documents" label="Document" item-text="title" item-value="id"></v-select>
+        <v-spacer></v-spacer>
+        <v-btn @click.native="download">Download Report</v-btn>
     </v-card-title>
 
     <v-card-text>
@@ -119,6 +121,12 @@ export default {
     },
 
     methods: {
+
+        download() {
+            let location = `${process.env.VUE_APP_BASE_URL}documents/${this.documentId}/report?access_token=${this.$store.state.user.auth_token}`;
+            window.open(location);
+        },
+
         async load() {
 
             this.stats = await this.$store.dispatch("getObjects", {
