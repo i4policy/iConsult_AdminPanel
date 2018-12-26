@@ -3,7 +3,6 @@
 
     <v-card-title>
         <v-select v-model="documentId" :items="documents" label="Document" item-text="title" item-value="id"></v-select>
-        <v-spacer></v-spacer>
         <v-btn @click.native="download">Download Report</v-btn>
     </v-card-title>
 
