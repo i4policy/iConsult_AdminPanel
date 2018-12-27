@@ -187,7 +187,7 @@ export default {
             for (let t in this.stats.sections) {
                 let s = this.stats.sections[t];
                 data.labels.push(t);
-                data.datasets[0].data.push(s.averageRating);
+                data.datasets[0].data.push(s.averageRating || 0);
             }
 
             return data;
