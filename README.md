@@ -1,4 +1,4 @@
-# admin
+# I4Policy Consultation Tool Admin Panel
 
 ## Project setup
 ```
